@@ -24,7 +24,24 @@ This code demonstrates logistic regression on the dataset and also uses gradient
       <br>
         <code>pip install numpy</code>
     </li>
-  <li>pandas<br><code>pip install pandas</code></li>
-  <li>random<br><code>pip install random</code></li>
-  <li>seaborn<br><code>pip install seaborn</code></li>
+  <li>pandas
+    <br>
+    <code>
+      pip install pandas
+    </code>
+  </li>
+  <li>
+    random
+    <br>
+    <code>
+      pip install random
+    </code>
+  </li>
+  <li>
+    seaborn
+    <br>
+    <code>
+      pip install seaborn
+    </code>
+  </li>
 </ol>
