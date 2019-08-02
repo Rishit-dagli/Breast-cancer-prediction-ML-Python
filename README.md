@@ -2,7 +2,8 @@
 Make predictions for breast cancer, malignant or benign using the Breast Cancer data set<br>
 Dataset - Breast Cancer Wisconsin (Original) Data Set<br>
 This code demonstrates logistic regression on the dataset and also uses gradient descent to lower the BCE(binary cross entropy).
-## <strong>Datset description</strong>
+## <strong>Dataset description</strong>
+
 ![](/pictures/breast%20cancer%20description.PNG)
 <ol>
 <li>Sample code number: id number</li>
