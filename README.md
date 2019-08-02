@@ -51,8 +51,6 @@ This code demonstrates logistic regression on the dataset and also uses gradient
 
 <ul>
 <li>
-  Use the sigmoid activation function ```math
-SE = \frac{\sigma}{\sqrt{n}}
-```
+  Use the sigmoid activation function - ![](https://latex.codecogs.com/gif.latex?$\sigma(z)=&space;1/1&plus;e^{-z}$)
   </li>
 </ul>
