@@ -91,3 +91,12 @@ This code demonstrates logistic regression on the dataset and also uses gradient
   Now apply Gradient Descent with this formula
   </li>
 </ul>
+
+## Other algorithms for same project by me
+1. Multiclass Neural Networks
+2. Random Forest classifier<br>
+[project](https://gallery.azure.ai/Experiment/Breast-cancer-dataset)
+## About me
+<strong>Rishit Dagli</strong><br>
+[website](rishitdagli.ml)<br>
+[LinkedIn](https://www.linkedin.com/in/rishit-dagli-440113165/)
