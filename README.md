@@ -48,3 +48,11 @@ This code demonstrates logistic regression on the dataset and also uses gradient
 <h2> Logistic regression algorithm </h2>
 
 ![](/pictures/logistic_regression.gif)
+
+<ul>
+<li>
+  Use the sigmoid activation function ```math
+SE = \frac{\sigma}{\sqrt{n}}
+```
+  </li>
+</ul>
