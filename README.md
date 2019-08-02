@@ -45,3 +45,6 @@ This code demonstrates logistic regression on the dataset and also uses gradient
     </code>
   </li>
 </ol>
+## Logistic regression algorithm
+<br>
+![](/pictures/logistic_regression.gif)
