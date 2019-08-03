@@ -1,3 +1,4 @@
+
 # Breast-cancer-prediction-ML-Python
 Make predictions for breast cancer, malignant or benign using the Breast Cancer data set<br>
 Dataset - Breast Cancer Wisconsin (Original) Data Set<br>
@@ -92,6 +93,76 @@ This code demonstrates logistic regression on the dataset and also uses gradient
   </li>
 </ul>
 
+## Code explanation
+<ol>
+<li>Data preprocessing<br>Load data, remove empty values. As we are using logistic regression replace 2 and 4 with 0 and 1.
+<li> <code>sns.pairplot(df)</code><br>Create pair wisegraphs for the features.
+<li>Do Principal component analysis for simplified learning. 
+<li><code>full_data=np.matrix(full_data)<br>x0=np.ones((full_data.shape[0],1))
+data=np.concatenate((x0,full_data),axis=1)<br>
+print(data.shape)<br>
+theta=np.zeros((1,data.shape[1]-1))<br>
+print(theta.shape)<br>
+print(theta)
+</code><br>
+Convert data to matrix, concatenate a unit matrix with the complete data matrix. Also make a zero matrix, for the initial theta.
+<li>
+<code>test_size=0.2<br>
+X_train=data[:-int(test_size*len(full_data)),:-1]<br>
+Y_train=data[:-int(test_size*len(full_data)),-1]<br>
+X_test=data[-int(test_size*len(full_data)):,:-1]<br>
+Y_test=data[-int(test_size*len(full_data)):,-1]
+</code><br>
+Create the train-test split
+<li>
+<code>
+def sigmoid(Z):<br>
+    &nbsp return 1/(1+np.exp(-Z))<br><br>
+def BCE(X,y,theta):<br>
+    &nbsp pred=sigmoid(np.dot(X,theta.T))<br>
+    &nbsp mcost=-np.array(y)*np.array(np.log(pred))np.array((1y))*np.array(np.log(1pred))<br>
+    &nbsp return mcost.mean()
+</code><br>
+Define the code for sigmoid function as mentioned and the BCE.
+<li>
+<code>
+def grad_descent(X,y,theta,alpha):<br>
+   &nbsp h=sigmoid(X.dot(theta.T))<br>
+    &nbsp loss=h-y<br>
+    &nbsp dj=(loss.T).dot(X)<br>
+    &nbsp theta -= (alpha/(len(X))*dj)<br>
+    &nbsp return theta <br>      
+cost=BCE(X_train,Y_train,theta)<br>
+print("cost before: ",cost)    <br>
+theta=grad_descent(X_train,Y_train,theta,alpha)   <br>
+cost=BCE(X_train,Y_train,theta)<br>
+print("cost after: ",cost)
+</code><br>
+Define gradient descent algorithm and also define the number of epochs. Also test the gradient descent by 1 iteration.
+<li>
+<code>
+def logistic_reg(epoch,X,y,theta,alpha):<br>
+   &nbsp for ep in range(epoch):<br>
+#update theta <br>
+        &nbsp theta=grad_descent(X,y,theta,alpha)<br>
+#calculate new loss<br>
+        &nbsp if ((ep+1)%1000 == 0):<br>
+           &nbsp &nbsp  loss=BCE(X,y,theta)<br>
+             &nbsp &nbsp print("Cost function ",loss)<br>
+     &nbsp return theta<br><br>
+theta=logistic_reg(epoch,X_train,Y_train,theta,alpha)
+</code><br>
+Define the logistic regression with gradient descent code.
+<li>
+<code>
+print(BCE(X_train,Y_train,theta))<br><br>
+print(BCE(X_test,Y_test,theta))
+</code><br>
+Finally test the code,
+</ol>
+<br>
+Now we are done with the code &#128512;
+
 ## Other algorithms for same project by me
 1. Multiclass Neural Networks
 2. Random Forest classifier<br>
@@ -100,3 +171,4 @@ This code demonstrates logistic regression on the dataset and also uses gradient
 <strong>Rishit Dagli</strong><br>
 [Website](rishitdagli.ml)<br>
 [LinkedIn](https://www.linkedin.com/in/rishit-dagli-440113165/)
+
