@@ -93,7 +93,7 @@ This code demonstrates logistic regression on the dataset and also uses gradient
   </li>
 </ul>
 
-## Code explanation
+## Code
 <ol>
 <li>Data preprocessing<br>Load data, remove empty values. As we are using logistic regression replace 2 and 4 with 0 and 1.
 <li> <code>sns.pairplot(df)</code><br>Create pair wisegraphs for the features.
