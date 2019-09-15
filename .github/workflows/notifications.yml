@@ -1,12 +1,5 @@
 name: CI
 
-jobs:
-  build:
-
-    runs-on: [ubuntu-latest, windows-latest, macOS-latest]
-    strategy:
-      matrix:
-        python-version: [3.5, 3.6, 3.7]
 
 on:
   push:
@@ -14,5 +7,9 @@ on:
       - master
     paths:
     - '*.ipynb'
-    steps:
+    
+jobs:
+  runs-on: [ubuntu-latest, windows-latest, macOS-latest]
+  steps:
+      - name:give notifications
       run: echo "You have changed the source code!"
