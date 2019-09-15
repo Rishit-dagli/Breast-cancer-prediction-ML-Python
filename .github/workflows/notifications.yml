@@ -15,10 +15,3 @@ on:
     paths:
     - '*.ipynb'
     run: echo "You have changed the source code!"
-    
-  pull:
-    branches:
-      - master
-    paths:
-    - '*.ipynb'
-    run: echo "This is Rishit Daglis breast cancer prediction ML rep, your suggestions are welcome"
