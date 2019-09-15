@@ -14,4 +14,5 @@ on:
       - master
     paths:
     - '*.ipynb'
-    run: echo "You have changed the source code!"
+    steps:
+      run: echo "You have changed the source code!"
