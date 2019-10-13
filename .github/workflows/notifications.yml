@@ -1,0 +1,15 @@
+name: notifications
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+    - '*.ipynb'
+    
+jobs:
+  my-job:
+    runs-on: [ubuntu-latest, windows-latest, macOS-latest]
+    steps:
+    - name: give notifications
+      run: echo "You have changed the source code!"
