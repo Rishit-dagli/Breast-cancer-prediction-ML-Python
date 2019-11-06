@@ -163,7 +163,7 @@ Finally test the code,
 <br>
 Now we are done with the code &#128512;
 
-##More about the project
+## More about the project
 1. My medium article on same - [here](https://medium.com/@rishit.dagli/create-logistic-regression-algorithm-from-scratch-and-apply-it-on-data-set-3f16ca5dbdb9)
 2. My research paper on this - [here](https://iarjset.com/papers/machine-learning-as-a-decision-aid-for-breast-cancer-diagnosis/)
 3. Another must read paper about the same topic -[here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC55130/)
