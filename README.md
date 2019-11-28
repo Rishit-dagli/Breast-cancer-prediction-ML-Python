@@ -163,6 +163,275 @@ Finally test the code,
 <br>
 Now we are done with the code &#128512;
 
+## The Algorithm as a web service
+
+### Python 3+
+
+    import urllib.request
+    import json
+
+    data = {
+            "Inputs": {
+                    "input1":
+                    [
+                        {
+                                '1': "4",   
+                                '2': "7",   
+                                '3': "3",   
+                                '5': "5",   
+                                '1000025': "1002945",   
+                                '1 (2)': "4",   
+                                '1 (3)': "5",   
+                                '1 (4)': "10",   
+                                '1 (5)': "2",   
+                                '1 (6)': "1",   
+                                '2 (2)': "2",   
+                        }
+                    ],
+            },
+        "GlobalParameters":  {
+        }
+    }
+
+    body = str.encode(json.dumps(data))
+
+    url = 'https://ussouthcentral.services.azureml.net/workspaces/f764effe004044e1b1c56ce46a5a8050/services/689b12141b8b4d9886aa420832a2f406/execute?api-version=2.0&format=swagger'
+    api_key = 'abc123' # Replace this with the API key for the web service
+    headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
+
+    req = urllib.request.Request(url, body, headers)
+
+    try:
+        response = urllib.request.urlopen(req)
+
+        result = response.read()
+        print(result)
+    except urllib.error.HTTPError as error:
+        print("The request failed with status code: " + str(error.code))
+
+        # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
+        print(error.info())
+        print(json.loads(error.read().decode("utf8", 'ignore')))
+
+### Python
+
+    import urllib2
+    import json
+
+    data = {
+            "Inputs": {
+                    "input1":
+                    [
+                        {
+                                '1': "4",   
+                                '2': "7",   
+                                '3': "3",   
+                                '5': "5",   
+                                '1000025': "1002945",   
+                                '1 (2)': "4",   
+                                '1 (3)': "5",   
+                                '1 (4)': "10",   
+                                '1 (5)': "2",   
+                                '1 (6)': "1",   
+                                '2 (2)': "2",   
+                        }
+                    ],
+            },
+        "GlobalParameters":  {
+        }
+    }
+
+    body = str.encode(json.dumps(data))
+
+    url = 'https://ussouthcentral.services.azureml.net/workspaces/f764effe004044e1b1c56ce46a5a8050/services/689b12141b8b4d9886aa420832a2f406/execute?api-version=2.0&format=swagger'
+    api_key = 'abc123' # Replace this with the API key for the web service
+    headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
+
+    req = urllib2.Request(url, body, headers)
+
+    try:
+        response = urllib2.urlopen(req)
+
+        result = response.read()
+        print(result)
+    except urllib2.HTTPError, error:
+        print("The request failed with status code: " + str(error.code))
+
+        # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
+        print(error.info())
+        print(json.loads(error.read())) 
+
+### R
+
+    library("RCurl")
+    library("rjson")
+
+    # Accept SSL certificates issued by public Certificate Authorities
+    options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+
+    h = basicTextGatherer()
+    hdr = basicHeaderGatherer()
+
+    req =  list(
+        Inputs = list(
+                "input1"= list(
+                    list(
+                            '1' = "4",
+                            '2' = "7",
+                            '3' = "3",
+                            '5' = "5",
+                            '1000025' = "1002945",
+                            '1 (2)' = "4",
+                            '1 (3)' = "5",
+                            '1 (4)' = "10",
+                            '1 (5)' = "2",
+                            '1 (6)' = "1",
+                            '2 (2)' = "2"
+                        )
+                )
+            ),
+            GlobalParameters = setNames(fromJSON('{}'), character(0))
+    )
+
+    body = enc2utf8(toJSON(req))
+    api_key = "abc123" # Replace this with the API key for the web service
+    authz_hdr = paste('Bearer', api_key, sep=' ')
+
+    h$reset()
+    curlPerform(url = "https://ussouthcentral.services.azureml.net/workspaces/f764effe004044e1b1c56ce46a5a8050/services/689b12141b8b4d9886aa420832a2f406/execute?api-version=2.0&format=swagger",
+    httpheader=c('Content-Type' = "application/json", 'Authorization' = authz_hdr),
+    postfields=body,
+    writefunction = h$update,
+    headerfunction = hdr$update,
+    verbose = TRUE
+    )
+
+    headers = hdr$value()
+    httpStatus = headers["status"]
+    if (httpStatus >= 400)
+    {
+    print(paste("The request failed with status code:", httpStatus, sep=" "))
+
+    # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
+    print(headers)
+    }
+
+    print("Result:")
+    result = h$value()
+    print(fromJSON(result))
+
+### C#
+
+    // This code requires the Nuget package Microsoft.AspNet.WebApi.Client to be installed.
+    // Instructions for doing this in Visual Studio:
+    // Tools -> Nuget Package Manager -> Package Manager Console
+    // Install-Package Microsoft.AspNet.WebApi.Client
+
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Net.Http;
+    using System.Net.Http.Formatting;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    namespace CallRequestResponseService
+    {
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                InvokeRequestResponseService().Wait();
+            }
+
+            static async Task InvokeRequestResponseService()
+            {
+                using (var client = new HttpClient())
+                {
+                    var scoreRequest = new
+                    {
+                        Inputs = new Dictionary<string, List<Dictionary<string, string>>> () {
+                            {
+                                "input1",
+                                new List<Dictionary<string, string>>(){new Dictionary<string, string>(){
+                                                {
+                                                    "1", "4"
+                                                },
+                                                {
+                                                    "2", "7"
+                                                },
+                                                {
+                                                    "3", "3"
+                                                },
+                                                {
+                                                    "5", "5"
+                                                },
+                                                {
+                                                    "1000025", "1002945"
+                                                },
+                                                {
+                                                    "1 (2)", "4"
+                                                },
+                                                {
+                                                    "1 (3)", "5"
+                                                },
+                                                {
+                                                    "1 (4)", "10"
+                                                },
+                                                {
+                                                    "1 (5)", "2"
+                                                },
+                                                {
+                                                    "1 (6)", "1"
+                                                },
+                                                {
+                                                    "2 (2)", "2"
+                                                },
+                                    }
+                                }
+                            },
+                        },
+                        GlobalParameters = new Dictionary<string, string>() {
+                        }
+                    };
+
+                    const string apiKey = "abc123"; // Replace this with the API key for the web service
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue( "Bearer", apiKey);
+                    client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/f764effe004044e1b1c56ce46a5a8050/services/689b12141b8b4d9886aa420832a2f406/execute?api-version=2.0&format=swagger");
+
+                    // WARNING: The 'await' statement below can result in a deadlock
+                    // if you are calling this code from the UI thread of an ASP.Net application.
+                    // One way to address this would be to call ConfigureAwait(false)
+                    // so that the execution does not attempt to resume on the original context.
+                    // For instance, replace code such as:
+                    //      result = await DoSomeTask()
+                    // with the following:
+                    //      result = await DoSomeTask().ConfigureAwait(false)
+
+                    HttpResponseMessage response = await client.PostAsJsonAsync("", scoreRequest);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string result = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine("Result: {0}", result);
+                    }
+                    else
+                    {
+                        Console.WriteLine(string.Format("The request failed with status code: {0}", response.StatusCode));
+
+                        // Print the headers - they include the requert ID and the timestamp,
+                        // which are useful for debugging the failure
+                        Console.WriteLine(response.Headers.ToString());
+
+                        string responseContent = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine(responseContent);
+                    }
+                }
+            }
+        }
+    }
+
 ## More about the project
 1. My medium article on same - [here](https://medium.com/@rishit.dagli/create-logistic-regression-algorithm-from-scratch-and-apply-it-on-data-set-3f16ca5dbdb9)
 2. My research paper on this - [here](https://iarjset.com/papers/machine-learning-as-a-decision-aid-for-breast-cancer-diagnosis/)
