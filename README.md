@@ -1,5 +1,10 @@
 
 # Breast-cancer-prediction-ML-Python
+
+![GitHub followers](https://img.shields.io/github/followers/Rishit-dagli?label=Follow&style=social)
+[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FRishit-dagli%2Fpopup_box)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FRishit-dagli%2Fpopup_box)
+![Twitter Follow](https://img.shields.io/twitter/follow/rishit_dagli?label=Follow&style=social)
+
 Make predictions for breast cancer, malignant or benign using the Breast Cancer data set<br>
 Dataset - Breast Cancer Wisconsin (Original) Data Set<br>
 This code demonstrates logistic regression on the dataset and also uses gradient descent to lower the BCE(binary cross entropy).
